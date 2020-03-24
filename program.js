@@ -38,12 +38,11 @@ function displayResult (btnStr) {
     makePcChoice();
     result = determineResult(btnStr, pcChoice);
     if (result == win) {
-        resultText.textContent = "You won!";
-        
+        resultText.textContent = upperCaseFirst(btnStr) + " beats " + pcChoice + ". You won!";
     } else if (result == lose) {
-        resultText.textContent = "You lost..";
+        resultText.textContent = upperCaseFirst(pcChoice) + " beats " + btnStr + ". You lost..";
     } else {
-        resultText.textContent = "It was a draw.";
+        resultText.textContent = upperCaseFirst(btnStr) + " vs " + pcChoice + "? It was a draw.";
     }
 }
 
@@ -80,6 +79,18 @@ function determineResult (player, pc) {
     }
     
     return value;
+}
+
+function upperCaseFirst (str) {
+    var buildStr = "";
+    for (var i = 0; i < str.length; i++) {
+        if (i == 0) {
+            buildStr += str[0].toUpperCase();
+        } else {
+            buildStr += str[i];
+        }
+    }
+    return buildStr;
 }
 
 function getRandomInclusive (min, max) {
