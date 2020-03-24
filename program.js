@@ -5,6 +5,8 @@ const win = "win";
 const lose = "lose";
 const tie = "tie";
 
+var playerScore = 0;
+var pcScore = 0;
 var result = "";
 var pcChoice = "";
 var choices = [rock, paper, scissors];
@@ -13,6 +15,8 @@ var rockBtn = document.getElementById("rock-btn");
 var paperBtn = document.getElementById("paper-btn");
 var scissorsBtn = document.getElementById("scissors-btn");
 var resultText = document.getElementById("result-text");
+var pcScoreText = document.getElementById("pc-score");
+var playerScoreText = document.getElementById("player-score");
 
 rockBtn.addEventListener("click", callRock);
 paperBtn.addEventListener("click", callPaper);
@@ -39,11 +43,15 @@ function displayResult (btnStr) {
     result = determineResult(btnStr, pcChoice);
     if (result == win) {
         resultText.textContent = upperCaseFirst(btnStr) + " beats " + pcChoice + ". You won!";
+        playerScore++;
     } else if (result == lose) {
         resultText.textContent = upperCaseFirst(pcChoice) + " beats " + btnStr + ". You lost..";
+        pcScore++;
     } else {
         resultText.textContent = upperCaseFirst(btnStr) + " vs " + pcChoice + "? It was a draw.";
     }
+    playerScoreText.textContent = playerScore;
+    pcScoreText.textContent = pcScore;
 }
 
 function determineResult (player, pc) {
